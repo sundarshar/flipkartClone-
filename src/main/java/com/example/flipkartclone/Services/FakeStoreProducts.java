@@ -1,6 +1,8 @@
 package com.example.flipkartclone.Services;
 
 import com.example.flipkartclone.Dtos.ProductDto;
+import com.example.flipkartclone.Exception.CategoryNotFoundException;
+import com.example.flipkartclone.Model.Category;
 import com.example.flipkartclone.Model.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -37,6 +39,26 @@ public class FakeStoreProducts implements ProductService{
     }
 
     @Override
+    public List<Category> getAllCategory() {
+        return null;
+    }
+
+    @Override
+    public Product updateProduct(Long id, ProductDto productDto) {
+        return null;
+    }
+
+    @Override
+    public void deleteProduct(Long id) {
+
+    }
+
+    @Override
+    public List<Product> getProductsBasedOnCategory(String category) throws CategoryNotFoundException {
+        return List.of();
+    }
+
+    @Override
     public List<Product> getAllProducts() {
         ProductDto[] productDtos = restTemplate.getForObject(
                 "https://fakestoreapi.com/products",
@@ -48,4 +70,6 @@ public class FakeStoreProducts implements ProductService{
         }
         return product;
     }
+
+
 }
