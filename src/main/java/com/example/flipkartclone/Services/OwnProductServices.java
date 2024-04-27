@@ -5,10 +5,14 @@ import com.example.flipkartclone.Exception.CategoryNotFoundException;
 import com.example.flipkartclone.Exception.ProductNotFoundException;
 import com.example.flipkartclone.Model.Category;
 import com.example.flipkartclone.Model.Product;
+import com.example.flipkartclone.Model.ProductPagination;
 import com.example.flipkartclone.Repository.CategoryRepository;
+import com.example.flipkartclone.Repository.ProductPaginationRepository;
 import com.example.flipkartclone.Repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("selfProducts")
@@ -16,10 +20,13 @@ public class OwnProductServices implements ProductService{
 
     ProductRepository productRepository;
     CategoryRepository categoryRepository;
+    ProductPaginationRepository productPaginationRepository;
 
-    public OwnProductServices(ProductRepository productRepository, CategoryRepository categoryRepository) {
+    public OwnProductServices(ProductRepository productRepository, CategoryRepository categoryRepository,
+                              ProductPaginationRepository productPaginationRepository) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.productPaginationRepository = productPaginationRepository;
     }
 
     @Override
@@ -106,6 +113,25 @@ public class OwnProductServices implements ProductService{
             throw new CategoryNotFoundException("Category with name "+ category+" is not valid name");
         }
         return product;
+    }
+
+    @Override
+    public boolean genrateProductData() {
+        List<ProductPagination> productPaginations = new ArrayList<>();
+
+        ProductPagination mac = new ProductPagination("Macbook", 200000);
+        productPaginations.add(mac);
+        ProductPagination iphone = new ProductPagination("Iphone", 150000);
+        productPaginations.add(iphone);
+        ProductPagination watch = new ProductPagination("Watch", 20000);
+        productPaginations.add(watch);
+        ProductPagination tv = new ProductPagination("TV", 100000);
+        productPaginations.add(tv);
+        ProductPagination speaker = new ProductPagination("Speaker", 5000);
+        productPaginations.add(speaker);
+
+        productPaginationRepository.saveAll(productPaginations);
+        return true;
     }
 
 

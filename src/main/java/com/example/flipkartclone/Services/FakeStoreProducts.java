@@ -59,6 +59,11 @@ public class FakeStoreProducts implements ProductService{
     }
 
     @Override
+    public boolean genrateProductData() {
+        return false;
+    }
+
+    @Override
     public List<Product> getAllProducts() {
         ProductDto[] productDtos = restTemplate.getForObject(
                 "https://fakestoreapi.com/products",

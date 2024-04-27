@@ -1,6 +1,7 @@
 package com.example.flipkartclone.Repository;
 
 import com.example.flipkartclone.Model.Product;
+import com.example.flipkartclone.Model.ProductPagination;
 import com.example.flipkartclone.Repository.projection.ProductProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     void deleteById(Long productId);
     List<Product> findAll();
     List<Product> findAllByCategoryNameIs(String category);
+    //List<ProductPagination> saveAll(List<ProductPagination> products);
 
     /*HQL Query
     @Query("select p.name as title, p.id as id, p.description as description, p.image as imageUrl from Product p where p.id= :productId")

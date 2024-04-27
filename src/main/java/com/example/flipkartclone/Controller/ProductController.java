@@ -83,6 +83,13 @@ public class ProductController {
 
     }
 
+    @GetMapping("/generate")
+    public ResponseEntity genrateData(){
+        return ResponseEntity.ok(
+            productService.genrateProductData()
+        );
+    }
+
     private int choosePaymentGateway(){
         return paymentGatewaySelectionImp.paymentGatewaySelection();
     }

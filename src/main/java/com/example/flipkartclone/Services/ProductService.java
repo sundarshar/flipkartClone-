@@ -26,5 +26,9 @@ public interface ProductService {
 
     List<Product> getProductsBasedOnCategory(String category) throws CategoryNotFoundException;
 
+    public boolean genrateProductData();
+
+
+
 
 }
